@@ -35,7 +35,6 @@ gulp.task('js', () => gulp.src('src/**/*.js')
 );
 
 gulp.task('js:min', () => gulp.src('src/**/*.js')
-    .pipe(changed('dist'))
     .pipe(sourcemaps.init())
     .pipe(babel())
     .pipe(rename({extname: '.min.js'}))
