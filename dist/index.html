@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Example</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      padding: 40px;
+    }
+    [data-error] {
+      background-color: #fee;
+    }
+  </style>
+</head>
+<body>
+  <form method="get" action="?" id="main" novalidate>
+
+    <label class="d-block">
+      HTML5 Validator<br>
+        <input type="text" required pattern="\d+">
+    </label>
+
+    <label class="d-block">
+      カスタムバリデータ<br>
+      <input type="text" required data-vx-rule="int;range:1,255">
+    </label>
+
+    <label class="d-block">
+      属性でメッセージを指定<br>
+      <input type="text" required
+        data-vx-rule="
+          int;
+          range:1,255;
+          "
+        data-vx-message="
+          required:必須っす;
+          int:整数っす;
+          range:${min}～${max}の範囲っす;
+          ">
+    </label>
+
+    <label class="d-block">
+      セレクトボクス<br>
+      <select required data-vx-message="選択必須っす">
+        <option></option>
+        <option value="1">りんご</option>
+        <option value="2">ごりら</option>
+        <option value="3">ぱいなっぷる</option>
+      </select>
+    </label>
+
+    <div>
+      チェックボックスグループ<br>
+      <span data-vx-rule="checked">
+      <label><input type="checkbox">りんご</label>
+      <label><input type="checkbox">ごりら</label>
+      <label><input type="checkbox">ぱいなっぷる</label>
+      </span>
+    </div>
+
+    <button type="submit">XXX</button>
+  </form>
+  <hr>
+  <label class="d-block">
+    フォーム外の入力項目<br>
+    <input type="text" required pattern="\d+" form="main">
+  </label>
+
+  <script src="vxh.core.js"></script>
+  <script src="vxh.event.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
